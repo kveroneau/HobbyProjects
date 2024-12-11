@@ -1,0 +1,24 @@
+object JournalForm: TJournalForm
+  Left = 299
+  Height = 521
+  Top = 129
+  Width = 741
+  Caption = 'JournalForm'
+  ClientHeight = 521
+  ClientWidth = 741
+  OnCloseQuery = FormCloseQuery
+  OnResize = FormResize
+  LCLVersion = '2.2.6.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 184
+    Top = 0
+    Width = 254
+    Lines.Strings = (
+      'Memo1'
+    )
+    OnKeyPress = Memo1KeyPress
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+end

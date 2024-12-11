@@ -1,0 +1,390 @@
+object SysMgrForm: TSysMgrForm
+  Left = 304
+  Height = 697
+  Top = 134
+  Width = 666
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'System Manager'
+  ClientHeight = 697
+  ClientWidth = 666
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.2.6.0'
+  object NetGroup: TGroupBox
+    Left = 481
+    Height = 192
+    Top = 360
+    Width = 168
+    Caption = 'Networks'
+    ClientHeight = 172
+    ClientWidth = 164
+    TabOrder = 0
+    object BasicSwitch: TTICheckBox
+      Left = 16
+      Height = 22
+      Top = 8
+      Width = 117
+      AutoSize = True
+      Caption = 'Basic Switch'
+      Link.TIObject = NetProcModule.BasicSwitch
+      Link.TIPropertyName = 'Active'
+      OnClick = BasicSwitchClick
+      PropertyNameAsCaption = False
+      TabOrder = 0
+    end
+    object TapSwitch: TTICheckBox
+      Left = 16
+      Height = 22
+      Top = 40
+      Width = 103
+      AutoSize = True
+      Caption = 'Tap Switch'
+      Link.TIObject = NetProcModule.TapSwitch
+      Link.TIPropertyName = 'Active'
+      OnClick = TapSwitchClick
+      PropertyNameAsCaption = False
+      TabOrder = 1
+    end
+    object RemoteSwitch: TTICheckBox
+      Left = 16
+      Height = 22
+      Top = 72
+      Width = 135
+      AutoSize = True
+      Caption = 'Remote Switch'
+      Link.TIObject = NetProcModule.RemoteSwitch
+      Link.TIPropertyName = 'Active'
+      OnClick = RemoteSwitchClick
+      PropertyNameAsCaption = False
+      TabOrder = 2
+    end
+    object RemoteTap: TTICheckBox
+      Left = 16
+      Height = 22
+      Top = 104
+      Width = 112
+      AutoSize = True
+      Caption = 'Remote Tap'
+      Link.TIObject = NetProcModule.RemoteTap
+      Link.TIPropertyName = 'Active'
+      OnClick = RemoteTapClick
+      PropertyNameAsCaption = False
+      TabOrder = 3
+    end
+    object CorpTap: TTICheckBox
+      Left = 16
+      Height = 22
+      Top = 136
+      Width = 115
+      AutoSize = True
+      Caption = 'CorpNet Tap'
+      Enabled = False
+      Link.TIObject = NetProcModule.CorpTap
+      Link.TIPropertyName = 'Active'
+      PropertyNameAsCaption = False
+      TabOrder = 4
+    end
+  end
+  object SysGrid: TStringGrid
+    Left = 8
+    Height = 289
+    Top = 24
+    Width = 641
+    AlternateColor = clMenuBar
+    AutoFillColumns = True
+    ColCount = 4
+    Columns = <    
+      item
+        Title.Caption = 'Title'
+        Width = 159
+      end    
+      item
+        Title.Caption = 'Role'
+        Width = 159
+      end    
+      item
+        Title.Caption = 'Operating System'
+        Width = 159
+      end    
+      item
+        Title.Caption = 'Box Path'
+        Width = 160
+      end>
+    FixedCols = 0
+    MouseWheelOption = mwGrid
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goAutoAddRows, goDblClickAutoSize, goSmoothScroll, goAutoAddRowsSkipContentCheck, goRowHighlight]
+    TabOrder = 1
+    OnColRowInserted = SysGridColRowInserted
+    OnSelectCell = SysGridSelectCell
+    ColWidths = (
+      159
+      159
+      159
+      160
+    )
+  end
+  object ToolBar: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 666
+    Caption = 'ToolBar'
+    Images = NetProcModule.IconList
+    TabOrder = 2
+    object OpenList: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'OpenList'
+      ImageIndex = 0
+      OnClick = OpenListClick
+    end
+    object SaveList: TToolButton
+      Left = 24
+      Top = 2
+      Caption = 'SaveList'
+      ImageIndex = 1
+      OnClick = SaveListClick
+    end
+    object SysJournalBtn: TToolButton
+      Left = 47
+      Top = 2
+      Caption = 'Scenario Journal'
+      ImageIndex = 2
+      OnClick = SysJournalBtnClick
+    end
+    object AddJournalBtn: TToolButton
+      Left = 70
+      Top = 2
+      Caption = 'Add Journal'
+      ImageIndex = 3
+      OnClick = AddJournalBtnClick
+    end
+    object NetHostBtn: TToolButton
+      Left = 93
+      Top = 2
+      Caption = 'Set Network Target'
+      ImageIndex = 6
+      OnClick = NetHostBtnClick
+    end
+    object LibraryBtn: TToolButton
+      Left = 116
+      Top = 2
+      Caption = 'Library...'
+      ImageIndex = 5
+      OnClick = LibraryBtnClick
+    end
+  end
+  object BoxControls: TGroupBox
+    Left = 8
+    Height = 192
+    Top = 360
+    Width = 465
+    Caption = 'Box Controls'
+    ClientHeight = 172
+    ClientWidth = 461
+    TabOrder = 3
+    object BoxRunning: TCheckBox
+      Left = 8
+      Height = 22
+      Top = 8
+      Width = 84
+      Caption = 'Running'
+      OnClick = BoxRunningClick
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 18
+      Top = 48
+      Width = 119
+      Caption = 'NIC1 Network:'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 18
+      Top = 76
+      Width = 119
+      Caption = 'NIC2 Network:'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 8
+      Height = 18
+      Top = 104
+      Width = 119
+      Caption = 'NIC3 Network:'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 18
+      Top = 136
+      Width = 119
+      Caption = 'NIC4 Network:'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object NIC1Net: TLabel
+      Left = 144
+      Height = 18
+      Top = 48
+      Width = 60
+      Caption = 'NIC1Net'
+      ParentColor = False
+    end
+    object NIC2Net: TLabel
+      Left = 144
+      Height = 18
+      Top = 76
+      Width = 60
+      Caption = 'NIC2Net'
+      ParentColor = False
+    end
+    object NIC3Net: TLabel
+      Left = 144
+      Height = 18
+      Top = 104
+      Width = 60
+      Caption = 'NIC3Net'
+      ParentColor = False
+    end
+    object NIC4Net: TLabel
+      Left = 144
+      Height = 18
+      Top = 136
+      Width = 60
+      Caption = 'NIC4Net'
+      ParentColor = False
+    end
+    object CfgButton: TButton
+      Left = 376
+      Height = 25
+      Top = 5
+      Width = 75
+      Caption = 'Configure'
+      OnClick = CfgButtonClick
+      TabOrder = 1
+    end
+    object JournalIcon: TImage
+      Left = 408
+      Height = 32
+      Top = 72
+      Width = 32
+      OnDblClick = JournalIconDblClick
+      Picture.Data = {
+        1754506F727461626C654E6574776F726B47726170686963B002000089504E47
+        0D0A1A0A0000000D4948445200000020000000200806000000737A7AF4000000
+        097048597300000EC300000EC301C76FA8640000001974455874536F66747761
+        7265007777772E696E6B73636170652E6F72679BEE3C1A000000147445587441
+        7574686F72004A616B756220537465696E6572E6FBF72F000000157445587444
+        65736372697074696F6E006D696D65747970657337B1ED640000002174455874
+        536F7572636500687474703A2F2F6A696D6D61632E6D7573696368616C6C2E63
+        7A6966E35E000001CF494441545885D556414A2431147D3F655CD85D3B917123
+        28780167378BD9CC3586D9340882E06114DD0B9E446F31301E61E84952A59554
+        BE8B416D939455DD9DA6F56D0AF293F75F1EAF92006B068503755DEF71EBAE49
+        D011401BF3902935955BA3F2723C2ECF86AE891BB0BF01D137660880E7E98FCA
+        18807162942A4665793A648D488C7DED18EF0701DA68A98D3A364A5D2C248099
+        E542CD67605E455CCD2D601930BF46CA182D75A5267D22B20A086174BF88DE94
+        DFFFF93DA8D9FEC12188181CE4D6682D0934314A61549627E1BA540606354C41
+        14E9FD68ADA4317A5219751ED6A27340FD9BDAA2E860EA81B516D3E95F38E792
+        F5D1D69877BEEC6E12D1CB84A8D1320E4829B1BDBDD35977CE45E41D0218CFE6
+        0CCD4017F60F0E67B87D544F66600913DE85F73171C281B72A6777B02C0639E0
+        7D3C291752DCBD21CC9901EF3D21B8E11219589D0329EEC88130283933900AE1
+        C777206F063EA30379CF81FF9FD9B184036DB68631F79ACF81D4451739D0B66B
+        3E0943E4CC400A2B7D132E24605557F1600145211A6B6DD626CC8C87C7470070
+        087EC3280304BEADEAEA8773CD06287A322EA800B04DD30A21EE88E87D01B6A5
+        5FDC3CDCD495FF4E84CD3C0AD008C22D93FC99892F1F9E000DF001D11DBF38DE
+        0000000049454E44AE426082
+      }
+    end
+    object GoFS: TCheckBox
+      Left = 104
+      Height = 22
+      Top = 8
+      Width = 105
+      Caption = 'Full-Screen'
+      TabOrder = 2
+    end
+    object CloneBtn: TButton
+      Left = 376
+      Height = 25
+      Top = 32
+      Width = 75
+      Caption = 'Copy'
+      OnClick = CloneBtnClick
+      TabOrder = 3
+    end
+    object SetNetBtn: TButton
+      Left = 376
+      Height = 25
+      Top = 138
+      Width = 75
+      Caption = 'Setup Net'
+      OnClick = SetNetBtnClick
+      TabOrder = 4
+    end
+  end
+  object Label5: TLabel
+    Left = 16
+    Height = 18
+    Top = 330
+    Width = 149
+    Caption = 'Current Template:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+  end
+  object SysTemplate: TComboBox
+    Left = 168
+    Height = 30
+    Top = 328
+    Width = 268
+    Enabled = False
+    ItemHeight = 0
+    Style = csDropDownList
+    TabOrder = 4
+    Visible = False
+  end
+  object LogList: TListBox
+    Left = 8
+    Height = 128
+    Top = 560
+    Width = 641
+    ItemHeight = 0
+    OnDblClick = LogListDblClick
+    TabOrder = 5
+    TopIndex = -1
+  end
+  object Label6: TLabel
+    Left = 440
+    Height = 18
+    Top = 330
+    Width = 53
+    Caption = 'Stack:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object TemplStack: TComboBox
+    Left = 504
+    Height = 30
+    Top = 328
+    Width = 145
+    ItemHeight = 0
+    OnChange = TemplStackChange
+    Style = csDropDownList
+    TabOrder = 6
+  end
+end
