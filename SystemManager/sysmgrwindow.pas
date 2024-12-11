@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   Grids, ComCtrls, RTTICtrls, netmodule, process, IniFiles, JournalViewer,
-  kexec, FileUtil, DateUtils, LibraryWindow, BaseUnix;
+  kexec, FileUtil, DateUtils, LibraryWindow, BaseUnix, NewKVMWindow;
 
 type
 
@@ -174,6 +174,14 @@ begin
     if path[1] = '!' then
     begin
       path:=RightStr(path, Length(path)-1);
+      if not FileExists('/home/kveroneau/VMs/'+path+'.xml') then
+      begin
+        NewKVMForm.GetInstaller(path);
+        FBoxes[FRow-1]:=NewKVMForm.Process;
+        ShowMessage(FBoxes[FRow-1].Parameters.CommaText);
+        FBoxes[FRow-1].Active:=True;
+        Exit;
+      end;
       if Exec('/usr/bin/virsh', '-c qemu:///system dominfo '+path) <> 0 then
         if Exec('/usr/bin/virsh', '-c qemu:///system define /home/kveroneau/VMs/'+path+'.xml') <> 0 then
         begin

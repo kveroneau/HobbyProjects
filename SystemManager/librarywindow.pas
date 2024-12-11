@@ -39,8 +39,12 @@ var
   i: Integer;
 begin
   lst:=FindAllFiles('/btrfs/Library/', '*.*', False, faNormal);
-  for i:=0 to lst.Count-1 do
-    LibraryItem.Items.Add(ExtractFileName(lst.Strings[i]));
+  try
+    for i:=0 to lst.Count-1 do
+      LibraryItem.Items.Add(ExtractFileName(lst.Strings[i]));
+  finally
+    lst.Free;
+  end;
 end;
 
 procedure TLibraryForm.CancelBtnClick(Sender: TObject);
