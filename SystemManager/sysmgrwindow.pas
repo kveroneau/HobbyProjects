@@ -75,7 +75,7 @@ type
   private
     FBoxes: Array of TProcess;
     FRow: Integer;
-    FUpdating: Boolean;
+    FUpdating, FTapCreated: Boolean;
     FSysJournal: TJournalForm;
     FLastNet: string;
     procedure UpdateNetworks(Sender: TObject);
@@ -107,9 +107,9 @@ var
   lst: TStrings;
   i: Integer;
 begin
+  FTapCreated:=False;
   FSysJournal:=Nil;
   FLastNet:='';
-  SetLength(FBoxes, SysGrid.RowCount);
   LibraryBtn.Enabled:=False;
   if ParamCount = 1 then
   begin
@@ -118,7 +118,9 @@ begin
     Caption:='System Manager for '+ExtractFileName(ParamStr(1));
     if ExtractFileName(ParamStr(1)) = 'corpnet.sl' then
       CorpTap.Enabled:=True;
-  end;
+  end
+  else
+    SetLength(FBoxes, SysGrid.RowCount);
   RemoteTap.Enabled:=False;
   if Exec('/usr/bin/ssh-add', '-l') = 1 then
     RemoteSwitch.Enabled:=False;
@@ -135,7 +137,6 @@ begin
       RemoveDir('/tmp/remote');
     end;
   end;
-  //FindAllDirectories(SysTemplate.Items, '/btrfs/Boxes/.templates', False);
   lst:=FindAllDirectories('/btrfs/Boxes/.templates', False);
   try
     for i:=0 to lst.Count-1 do
@@ -152,6 +153,14 @@ begin
   for i:=0 to High(FBoxes)-1 do
     if Assigned(FBoxes[i]) then
       FreeAndNil(FBoxes[i]);
+  {$IFDEF DEBUG}
+  if FTapCreated then
+    if MessageDlg('System Manager', 'Remove Tap device?', mtConfirmation, [mbYes, mbNo], '') = mrYes then
+    begin
+      Exec('/usr/bin/sudo', 'ip link set tap0 down');
+      Exec('/usr/bin/sudo', 'ip tuntap del mode tap name tap0');
+    end;
+  {$ENDIF}
 end;
 
 procedure TSysMgrForm.BoxRunningClick(Sender: TObject);
@@ -174,21 +183,23 @@ begin
     if path[1] = '!' then
     begin
       path:=RightStr(path, Length(path)-1);
-      if not FileExists('/home/kveroneau/VMs/'+path+'.xml') then
-      begin
-        NewKVMForm.GetInstaller(path);
-        FBoxes[FRow-1]:=NewKVMForm.Process;
-        ShowMessage(FBoxes[FRow-1].Parameters.CommaText);
-        FBoxes[FRow-1].Active:=True;
-        Exit;
-      end;
       if Exec('/usr/bin/virsh', '-c qemu:///system dominfo '+path) <> 0 then
-        if Exec('/usr/bin/virsh', '-c qemu:///system define /home/kveroneau/VMs/'+path+'.xml') <> 0 then
+      begin
+        if not FileExists('/home/kveroneau/VMs/'+path+'.xml') then
+        begin
+          NewKVMForm.GetInstaller(path);
+          FBoxes[FRow-1]:=NewKVMForm.Process;
+          ShowMessage(FBoxes[FRow-1].Parameters.CommaText);
+          FBoxes[FRow-1].Active:=True;
+          Exit;
+        end
+        else if Exec('/usr/bin/virsh', '-c qemu:///system define /home/kveroneau/VMs/'+path+'.xml') <> 0 then
         begin
           ShowMessage('There was an error defining '+path);
           BoxRunning.State:=cbUnchecked;
           Exit;
         end;
+      end;
       if Exec('/usr/bin/virsh', '-c qemu:///system start '+path) <> 0 then
         ShowMessage('Potential Start-up errors.');
       proc:=TProcess.Create(Nil);
@@ -210,9 +221,11 @@ begin
       if Exec('/usr/bin/virsh', '-c lxc+ssh://kveroneau@pi4/ start '+path) <> 0 then
         ShowMessage('Potential Start-up errors.');
       proc:=TProcess.Create(Nil);
-      proc.Executable:='/usr/bin/konsole';
+      proc.Executable:='/usr/bin/xterm';
       with proc.Parameters do
       begin
+        Add('-T');
+        Add(SysGrid.Cells[0, FRow]);
         Add('-e');
         Add('virsh');
         Add('-c');
@@ -360,15 +373,31 @@ begin
 end;
 
 procedure TSysMgrForm.FormShow(Sender: TObject);
+{$IFDEF DEBUG}
+var
+  ipaddr: string;
+{$ENDIF}
 begin
   if Exec('/sbin/ifconfig', 'tap0') <> 0 then
   begin
-    //ipaddr:=InputBox('System Manager', 'Please provide an IP address for your TAP?', '192.168.0.254');
-    MessageDlg('System Manager', 'No Tap Device detected, aborting.', mtError, [mbOK], '');
-    Close;
+    {$IFDEF DEBUG}
+    ipaddr:=InputBox('System Manager', 'Please provide an IP address for your TAP?', '192.168.0.254');
+    Exec('/usr/bin/sudo', 'ip tuntap add mode tap name tap0 user '+GetEnvironmentVariable('USER'));
+    Exec('/usr/bin/sudo', 'ip addr add '+ipaddr+'/24 dev tap0');
+    Exec('/usr/bin/sudo', 'ip link set tap0 up');
+    if Exec('/sbin/ifconfig', 'tap0') <> 0 then
+    begin
+    {$ENDIF}
+      MessageDlg('System Manager', 'No Tap Device detected, aborting.', mtError, [mbOK], '');
+      Close;
+      Exit;
+    {$IFDEF DEBUG}
+    end;
+    FTapCreated:=True;
+    {$ENDIF}
   end;
   NetProcModule.OnSignal:=@UpdateNetworks;
-  ShowMessage('System Manager v0.3b started.');
+  ShowMessage('System Manager v0.4b started.');
 end;
 
 procedure TSysMgrForm.JournalIconDblClick(Sender: TObject);

@@ -151,6 +151,7 @@
         <Filename Value="newkvmwindow.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="NewKVMForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="NewKVMWindow"/>
       </Unit>
