@@ -79,6 +79,7 @@
           <Linking>
             <Debugging>
               <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf3"/>
             </Debugging>
             <LinkSmart Value="True"/>
             <Options>
@@ -98,6 +99,9 @@
       <FormatVersion Value="2"/>
     </RunParams>
     <RequiredPackages>
+      <Item>
+        <PackageName Value="kdb"/>
+      </Item>
       <Item>
         <PackageName Value="klib"/>
       </Item>

@@ -43,6 +43,7 @@ object NewKVMForm: TNewKVMForm
     Width = 240
     ItemHeight = 0
     Items.Strings = (
+      'Trixie'
       'Bookworm'
       'Bullseye'
       'Buster'

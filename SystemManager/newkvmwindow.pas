@@ -52,14 +52,15 @@ procedure TNewKVMForm.KVMSystemChange(Sender: TObject);
 begin
   FNICModel:='virtio';
   case KVMSystem.ItemIndex of
-    0: DebianParams('bookworm', 'debian10');
-    1: DebianParams('bullseye', 'debian10');
-    2: DebianParams('buster', 'debian10');
-    3: DebianParams('stretch', 'debian9');
-    4: NT351Params;
-    5: NT4Params;
-    6: W2kParams;
-    7: XPParams;
+    0: DebianParams('trixie', 'debian10');
+    1: DebianParams('bookworm', 'debian10');
+    2: DebianParams('bullseye', 'debian10');
+    3: DebianParams('buster', 'debian10');
+    4: DebianParams('stretch', 'debian9');
+    5: NT351Params;
+    6: NT4Params;
+    7: W2kParams;
+    8: XPParams;
   else
     Exit;
   end;

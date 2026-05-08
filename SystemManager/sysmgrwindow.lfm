@@ -334,6 +334,21 @@ object SysMgrForm: TSysMgrForm
       OnClick = SetNetBtnClick
       TabOrder = 4
     end
+    object Shader: TComboBox
+      Left = 216
+      Height = 26
+      Top = -1
+      Width = 152
+      ItemHeight = 0
+      Items.Strings = (
+        'Disabled'
+        'VHS'
+        'CRT Monitor'
+      )
+      OnChange = ShaderChange
+      Style = csDropDownList
+      TabOrder = 5
+    end
   end
   object Label5: TLabel
     Left = 16

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   Grids, ComCtrls, RTTICtrls, netmodule, process, IniFiles, JournalViewer,
-  kexec, FileUtil, DateUtils, LibraryWindow, BaseUnix, NewKVMWindow;
+  kexec, FileUtil, DateUtils, LibraryWindow, BaseUnix, NewKVMWindow, kdblog;
 
 type
 
@@ -16,6 +16,7 @@ type
   TSysMgrForm = class(TForm)
     BoxControls: TGroupBox;
     BoxRunning: TCheckBox;
+    Shader: TComboBox;
     SetNetBtn: TButton;
     CloneBtn: TButton;
     CfgButton: TButton;
@@ -65,6 +66,7 @@ type
     procedure RemoteTapClick(Sender: TObject);
     procedure SaveListClick(Sender: TObject);
     procedure SetNetBtnClick(Sender: TObject);
+    procedure ShaderChange(Sender: TObject);
     procedure SysGridColRowInserted(Sender: TObject; IsColumn: Boolean; sIndex,
       tIndex: Integer);
     procedure SysGridSelectCell(Sender: TObject; aCol, aRow: Integer;
@@ -92,6 +94,11 @@ var
 
 implementation
 
+const
+  SHADER_DIR = '/home/kveroneau/Shaders/glsl-shaders-master/';
+  SHADER_VHS = 'vhs/shaders/vhs.glsl';
+  SHADER_CRT = 'crt/shaders/hyllian/crt-hyllian-curvature-glow.glsl';
+
 {$R *.lfm}
 
 { TSysMgrForm }
@@ -107,12 +114,14 @@ var
   lst: TStrings;
   i: Integer;
 begin
+  InitLog('System Manager');
   FTapCreated:=False;
   FSysJournal:=Nil;
   FLastNet:='';
   LibraryBtn.Enabled:=False;
   if ParamCount = 1 then
   begin
+    WriteLog('Opening System List: '+ParamStr(1));
     SysGrid.LoadFromCSVFile(ParamStr(1));
     SetLength(FBoxes, SysGrid.RowCount);
     Caption:='System Manager for '+ExtractFileName(ParamStr(1));
@@ -123,16 +132,20 @@ begin
     SetLength(FBoxes, SysGrid.RowCount);
   RemoteTap.Enabled:=False;
   if Exec('/usr/bin/ssh-add', '-l') = 1 then
-    RemoteSwitch.Enabled:=False;
+    RemoteSwitch.Enabled:=False
+  else
+    WriteLog('SSH Agent and Key Detected.');
   if not IfProcess('vde_plug') then
   begin
     if DirectoryExists('/tmp/mysw') then
     begin
+      WriteLog('Removing old VDE: mysw');
       DeleteFile('/tmp/mysw/ctl');
       RemoveDir('/tmp/mysw');
     end;
     if DirectoryExists('/tmp/remote') then
     begin
+      WriteLog('Removing old VDE: remote');
       DeleteFile('/tmp/remote/ctl');
       RemoveDir('/tmp/remote');
     end;
@@ -397,7 +410,7 @@ begin
     {$ENDIF}
   end;
   NetProcModule.OnSignal:=@UpdateNetworks;
-  ShowMessage('System Manager v0.4b started.');
+  ShowMessage('System Manager v0.6b started.');
 end;
 
 procedure TSysMgrForm.JournalIconDblClick(Sender: TObject);
@@ -457,6 +470,7 @@ begin
   if not NetProcModule.OpenDialog.Execute then
     Exit;
   fname:=NetProcModule.OpenDialog.FileName;
+  WriteLog('Opening System List: '+fname);
   SysGrid.LoadFromCSVFile(fname);
   SetLength(FBoxes, SysGrid.RowCount);
   fname:=ExtractFileName(fname);
@@ -509,6 +523,30 @@ end;
 procedure TSysMgrForm.SetNetBtnClick(Sender: TObject);
 begin
   SetupNetwork(SysGrid.Cells[3, FRow]);
+end;
+
+procedure TSysMgrForm.ShaderChange(Sender: TObject);
+var
+  box: string;
+begin
+  box:=SysGrid.Cells[3, FRow];
+  if box = '' then
+    Exit;
+  with TIniFile.Create('/btrfs/Boxes/'+box+'/86box.cfg') do
+  begin
+    if Shader.ItemIndex = 0 then
+      WriteString('General', 'vid_renderer', 'qt_software')
+    else if Shader.ItemIndex = 1 then
+    begin
+      WriteString('General', 'vid_renderer', 'qt_opengl3');
+      WriteString('General', 'video_gl_shader', SHADER_DIR+SHADER_VHS);
+    end
+    else if Shader.ItemIndex = 2 then
+    begin
+      WriteString('General', 'vid_renderer', 'qt_opengl3');
+      WriteString('General', 'video_gl_shader', SHADER_DIR+SHADER_CRT);
+    end;
+  end;
 end;
 
 procedure TSysMgrForm.SysGridSelectCell(Sender: TObject; aCol, aRow: Integer;
@@ -582,6 +620,17 @@ begin
       NIC4Net.Caption:=ini.ReadString('Network', 'net_04_host_device', '');
       NIC4Net.Visible:=True;
     end;
+    if ini.ReadString('General', 'vid_renderer', '') = 'qt_opengl3' then
+    begin
+      if ini.ReadString('General', 'video_gl_shader', '') = SHADER_DIR+SHADER_VHS then
+        Shader.ItemIndex:=1
+      else if ini.ReadString('General', 'video_gl_shader', '') = SHADER_DIR+SHADER_CRT then
+        Shader.ItemIndex:=2
+      else
+        Shader.ItemIndex:=0;
+    end
+    else
+      Shader.ItemIndex:=0;
   finally
     ini.Free;
   end;
@@ -697,6 +746,7 @@ end;
 
 procedure TSysMgrForm.ShowMessage(const msg: string);
 begin
+  WriteLog(msg);
   LogList.ItemIndex:=LogList.Items.Add(DateToISO8601(Now)+' | '+msg);
   LogList.MakeCurrentVisible;
 end;
