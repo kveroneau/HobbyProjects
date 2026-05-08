@@ -1,0 +1,89 @@
+object DBLogForm: TDBLogForm
+  Left = 287
+  Height = 240
+  Top = 145
+  Width = 901
+  Caption = 'DBLog Journal Viewer'
+  ClientHeight = 240
+  ClientWidth = 901
+  OnResize = FormResize
+  OnShow = FormShow
+  LCLVersion = '2.2.6.0'
+  object DBGrid: TDBGrid
+    Left = 0
+    Height = 156
+    Top = 40
+    Width = 408
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource
+    ReadOnly = True
+    TabOrder = 0
+    OnDblClick = DBGridDblClick
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 18
+    Top = 8
+    Width = 50
+    Caption = 'Filter:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Filter: TComboBox
+    Left = 72
+    Height = 26
+    Top = 0
+    Width = 216
+    ItemHeight = 0
+    ItemIndex = 0
+    Items.Strings = (
+      'MESSAGE=''*cannabis'''
+      'APPNAME=''DBLogger'''
+      'MESSAGE=''*.sl'''
+      'MESSAGE=''Progressing Task*'''
+    )
+    OnChange = FilterChange
+    Style = csDropDownList
+    TabOrder = 1
+    Text = 'MESSAGE=''*cannabis'''
+  end
+  object RefreshBtn: TButton
+    Left = 312
+    Height = 25
+    Top = 1
+    Width = 75
+    Caption = 'Refresh'
+    OnClick = RefreshBtnClick
+    TabOrder = 2
+  end
+  object ReportBtn: TButton
+    Left = 408
+    Height = 25
+    Top = 1
+    Width = 75
+    Caption = 'Report'
+    OnClick = ReportBtnClick
+    TabOrder = 3
+  end
+  object LogDB: TDbf
+    IndexDefs = <>
+    TableLevel = 4
+    FilterOptions = []
+    Left = 448
+    Top = 48
+  end
+  object DataSource: TDataSource
+    DataSet = LogDB
+    Left = 448
+    Top = 104
+  end
+  object SaveDialog: TSaveDialog
+    Title = 'Save report as'
+    DefaultExt = '.html'
+    Filter = 'HTML Document|*.html'
+    Left = 448
+    Top = 160
+  end
+end

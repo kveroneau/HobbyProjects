@@ -1,0 +1,111 @@
+object NoteEditForm: TNoteEditForm
+  Left = 287
+  Height = 393
+  Top = 145
+  Width = 594
+  Caption = 'Note Editor'
+  ClientHeight = 393
+  ClientWidth = 594
+  OnCreate = FormCreate
+  LCLVersion = '2.2.6.0'
+  object Label1: TLabel
+    Left = 8
+    Height = 18
+    Top = 16
+    Width = 67
+    Caption = 'Note ID:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 18
+    Top = 64
+    Width = 43
+    Caption = 'Title:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Height = 18
+    Top = 104
+    Width = 88
+    Caption = 'Added On:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Height = 18
+    Top = 144
+    Width = 45
+    Caption = 'Note:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object DBID: TDBText
+    Left = 88
+    Height = 18
+    Top = 16
+    Width = 36
+    DataField = 'ID'
+    DataSource = DataSource
+    ParentColor = False
+  end
+  object DBTitle: TDBEdit
+    Left = 88
+    Height = 26
+    Top = 61
+    Width = 344
+    DataField = 'Title'
+    DataSource = DataSource
+    MaxLength = 0
+    TabOrder = 0
+  end
+  object DBAddedOn: TDBText
+    Left = 104
+    Height = 18
+    Top = 104
+    Width = 88
+    DataField = 'Added'
+    DataSource = DataSource
+    ParentColor = False
+  end
+  object DBNote: TDBMemo
+    Left = 8
+    Height = 184
+    Top = 168
+    Width = 424
+    DataField = 'Note'
+    DataSource = DataSource
+    ScrollBars = ssAutoBoth
+    TabOrder = 1
+  end
+  object DBNavigator: TDBNavigator
+    Left = 16
+    Height = 25
+    Top = 360
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = DataSource
+    Options = []
+    TabOrder = 2
+  end
+  object DataSource: TDataSource
+    Left = 481
+    Top = 23
+  end
+end

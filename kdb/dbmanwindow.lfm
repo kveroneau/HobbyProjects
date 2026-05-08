@@ -1,0 +1,101 @@
+object DBManForm: TDBManForm
+  Left = 287
+  Height = 505
+  Top = 145
+  Width = 1025
+  Caption = 'Kevin''s Database Manager'
+  ClientHeight = 505
+  ClientWidth = 1025
+  OnResize = FormResize
+  OnShow = FormShow
+  LCLVersion = '2.2.6.0'
+  object Label1: TLabel
+    Left = 8
+    Height = 18
+    Top = 8
+    Width = 85
+    Caption = 'Database:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Database: TComboBox
+    Left = 104
+    Height = 30
+    Top = 0
+    Width = 296
+    ItemHeight = 0
+    OnChange = DatabaseChange
+    ReadOnly = True
+    Style = csDropDownList
+    TabOrder = 0
+  end
+  object DBGrid: TDBGrid
+    Left = 8
+    Height = 208
+    Top = 40
+    Width = 392
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource
+    TabOrder = 1
+  end
+  object Label2: TLabel
+    Left = 416
+    Height = 18
+    Top = 8
+    Width = 50
+    Caption = 'Level:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object TblLvl: TLabel
+    Left = 475
+    Height = 18
+    Top = 8
+    Width = 9
+    Caption = '0'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 496
+    Height = 18
+    Top = 8
+    Width = 50
+    Caption = 'Filter:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Edit1: TEdit
+    Left = 552
+    Height = 26
+    Top = 4
+    Width = 256
+    OnDblClick = Edit1DblClick
+    TabOrder = 2
+    Text = 'Edit1'
+  end
+  object RefreshBtn: TButton
+    Left = 816
+    Height = 25
+    Top = 4
+    Width = 75
+    Caption = 'Refresh'
+    OnClick = RefreshBtnClick
+    TabOrder = 3
+  end
+  object DB: TDbf
+    IndexDefs = <>
+    TableLevel = 4
+    FilterOptions = []
+    Left = 448
+    Top = 72
+  end
+  object DataSource: TDataSource
+    DataSet = DB
+    Left = 448
+    Top = 152
+  end
+end

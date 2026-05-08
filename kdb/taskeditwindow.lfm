@@ -1,0 +1,137 @@
+object TaskEditForm: TTaskEditForm
+  Left = 319
+  Height = 465
+  Top = 176
+  Width = 495
+  Caption = 'Edit Task...'
+  ClientHeight = 465
+  ClientWidth = 495
+  OnResize = FormResize
+  LCLVersion = '2.2.6.0'
+  object Label1: TLabel
+    Left = 8
+    Height = 18
+    Top = 8
+    Width = 65
+    Caption = 'Project:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 18
+    Top = 40
+    Width = 43
+    Caption = 'Title:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Height = 18
+    Top = 80
+    Width = 60
+    Caption = 'Added:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Height = 18
+    Top = 128
+    Width = 35
+    Caption = 'Tag:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 8
+    Height = 18
+    Top = 176
+    Width = 54
+    Caption = 'Notes:'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object ProjectTitle: TLabel
+    Left = 96
+    Height = 18
+    Top = 8
+    Width = 83
+    Caption = 'ProjectTitle'
+    ParentColor = False
+  end
+  object DBTitle: TDBEdit
+    Left = 96
+    Height = 26
+    Top = 32
+    Width = 384
+    DataField = 'Title'
+    DataSource = Databases.TasksDS
+    MaxLength = 0
+    TabOrder = 0
+  end
+  object DBAdded: TDBText
+    Left = 96
+    Height = 18
+    Top = 80
+    Width = 67
+    DataField = 'Added'
+    DataSource = Databases.TasksDS
+    ParentColor = False
+  end
+  object DBTag: TDBEdit
+    Left = 96
+    Height = 26
+    Top = 120
+    Width = 192
+    DataField = 'Tag'
+    DataSource = Databases.TasksDS
+    MaxLength = 0
+    TabOrder = 1
+  end
+  object DBNotes: TDBMemo
+    Left = 8
+    Height = 232
+    Top = 200
+    Width = 472
+    DataField = 'Notes'
+    DataSource = Databases.TasksDS
+    TabOrder = 2
+  end
+  object SaveBtn: TButton
+    Left = 80
+    Height = 25
+    Top = 432
+    Width = 75
+    Caption = 'Save'
+    ModalResult = 1
+    TabOrder = 3
+  end
+  object CancelBtn: TButton
+    Left = 280
+    Height = 25
+    Top = 432
+    Width = 75
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 4
+  end
+  object DBLog: TDBGrid
+    Left = 8
+    Height = 232
+    Top = 464
+    Width = 472
+    Color = clWindow
+    Columns = <>
+    DataSource = Databases.LogDS
+    ReadOnly = True
+    TabOrder = 5
+    OnDblClick = DBLogDblClick
+  end
+end

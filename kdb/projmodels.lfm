@@ -1,0 +1,20 @@
+object Databases: TDatabases
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 181
+  HorizontalOffset = 1285
+  VerticalOffset = 148
+  Width = 221
+  object VFSDS: TDataSource
+    Left = 40
+    Top = 15
+  end
+  object TasksDS: TDataSource
+    Left = 40
+    Top = 80
+  end
+  object LogDS: TDataSource
+    Left = 136
+    Top = 15
+  end
+end

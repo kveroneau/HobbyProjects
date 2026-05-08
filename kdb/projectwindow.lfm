@@ -1,0 +1,156 @@
+object ProjectForm: TProjectForm
+  Left = 360
+  Height = 412
+  Top = 199
+  Width = 977
+  Caption = 'Project Manager'
+  ClientHeight = 412
+  ClientWidth = 977
+  OnShow = FormShow
+  LCLVersion = '2.2.6.0'
+  object ProjectTitle: TLabel
+    Left = 8
+    Height = 33
+    Top = 8
+    Width = 175
+    Caption = 'ProjectTitle'
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 77
+    Height = 18
+    Top = 65
+    Width = 47
+    Caption = 'Initial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object InitialList: TListBox
+    Left = 24
+    Height = 264
+    Top = 88
+    Width = 176
+    ItemHeight = 0
+    OnDblClick = InitialListDblClick
+    TabOrder = 0
+    TopIndex = -1
+  end
+  object NextBtn: TButton
+    Left = 200
+    Height = 25
+    Top = 200
+    Width = 75
+    Caption = '>>'
+    OnClick = NextBtnClick
+    TabOrder = 1
+  end
+  object Label2: TLabel
+    Left = 320
+    Height = 18
+    Top = 65
+    Width = 94
+    Caption = 'In Progress'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object WorkingList: TListBox
+    Left = 280
+    Height = 264
+    Top = 88
+    Width = 176
+    ItemHeight = 0
+    OnDblClick = WorkingListClick
+    TabOrder = 2
+    TopIndex = -1
+  end
+  object NextBtn1: TButton
+    Left = 456
+    Height = 25
+    Top = 200
+    Width = 75
+    Caption = '>>'
+    OnClick = NextBtn1Click
+    TabOrder = 3
+  end
+  object Label3: TLabel
+    Left = 589
+    Height = 18
+    Top = 65
+    Width = 60
+    Caption = 'Testing'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object TestingList: TListBox
+    Left = 536
+    Height = 264
+    Top = 88
+    Width = 176
+    ItemHeight = 0
+    OnDblClick = TestingListDblClick
+    TabOrder = 4
+    TopIndex = -1
+  end
+  object NextBtn2: TButton
+    Left = 712
+    Height = 25
+    Top = 200
+    Width = 75
+    Caption = '>>'
+    OnClick = NextBtn2Click
+    TabOrder = 5
+  end
+  object Label4: TLabel
+    Left = 845
+    Height = 18
+    Top = 65
+    Width = 90
+    Caption = 'Completed'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object DoneList: TListBox
+    Left = 792
+    Height = 264
+    Top = 88
+    Width = 176
+    ItemHeight = 0
+    OnDblClick = DoneListDblClick
+    TabOrder = 6
+    TopIndex = -1
+  end
+  object NewTaskBtn: TButton
+    Left = 24
+    Height = 32
+    Top = 352
+    Width = 176
+    Caption = 'Add Task'
+    OnClick = NewTaskBtnClick
+    TabOrder = 7
+  end
+  object BackBtn: TButton
+    Left = 456
+    Height = 25
+    Top = 224
+    Width = 75
+    Caption = '<<'
+    OnClick = BackBtnClick
+    TabOrder = 8
+  end
+  object NotesBtn: TButton
+    Left = 893
+    Height = 25
+    Top = 8
+    Width = 75
+    Caption = 'Notes'
+    OnClick = NotesBtnClick
+    TabOrder = 9
+  end
+end

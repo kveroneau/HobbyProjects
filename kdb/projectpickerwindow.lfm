@@ -1,0 +1,43 @@
+object ProjectPickerForm: TProjectPickerForm
+  Left = 287
+  Height = 344
+  Top = 145
+  Width = 320
+  Caption = 'Choose a Project...'
+  ClientHeight = 344
+  ClientWidth = 320
+  OnShow = FormShow
+  LCLVersion = '2.2.6.0'
+  object ProjList: TListBox
+    Left = 56
+    Height = 216
+    Top = 40
+    Width = 204
+    ItemHeight = 0
+    OnDblClick = ProjListDblClick
+    TabOrder = 0
+    TopIndex = -1
+  end
+  object NewBtn: TButton
+    Left = 72
+    Height = 32
+    Top = 264
+    Width = 176
+    Caption = 'New Project'
+    OnClick = NewBtnClick
+    TabOrder = 1
+  end
+  object ProjType: TComboBox
+    Left = 72
+    Height = 26
+    Top = 304
+    Width = 176
+    ItemHeight = 0
+    Items.Strings = (
+      'Lazarus Project'
+      'RPG Game Project'
+    )
+    Style = csDropDownList
+    TabOrder = 2
+  end
+end
