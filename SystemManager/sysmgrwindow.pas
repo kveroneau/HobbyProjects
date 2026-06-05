@@ -42,6 +42,7 @@ type
     RemoteSwitch: TTICheckBox;
     RemoteTap: TTICheckBox;
     CorpTap: TTICheckBox;
+    ProcTimer: TTimer;
     ToolBar: TToolBar;
     OpenList: TToolButton;
     SaveList: TToolButton;
@@ -62,6 +63,7 @@ type
     procedure LogListDblClick(Sender: TObject);
     procedure NetHostBtnClick(Sender: TObject);
     procedure OpenListClick(Sender: TObject);
+    procedure ProcTimerTimer(Sender: TObject);
     procedure RemoteSwitchClick(Sender: TObject);
     procedure RemoteTapClick(Sender: TObject);
     procedure SaveListClick(Sender: TObject);
@@ -250,6 +252,44 @@ begin
       FBoxes[FRow-1]:=proc;
       ShowMessage('Started LXC System: '+path);
     end
+    else if path[1] = '$' then
+    begin
+      path:=RightStr(path, Length(path)-1);
+      if FileExists('/btrfs/RISC-OS/'+path+'/rpc.cfg') then
+      begin
+        proc:=TProcess.Create(Nil);
+        proc.Executable:='/home/kveroneau/src/rpcemu-0.9.4/rpcemu-recompiler';
+        proc.CurrentDirectory:='/btrfs/RISC-OS/'+path;
+        proc.Active:=True;
+        FBoxes[FRow-1]:=proc;
+        ShowMessage('Started RISC-PC System: '+path);
+      end
+      else if FileExists('/btrfs/RISC-OS/'+path+'/hexcmos') then
+      begin
+        proc:=TProcess.Create(Nil);
+        proc.Executable:='/home/kveroneau/src/arcem-src/arcem';
+        proc.CurrentDirectory:='/btrfs/RISC-OS/'+path;
+        proc.Active:=True;
+        FBoxes[FRow-1]:=proc;
+        ShowMessage('Started Archimedes System: '+path);
+      end
+      else if FileExists('/btrfs/RISC-OS/'+path+'/dosbox.cnf') then
+      begin
+        proc:=TProcess.Create(Nil);
+        proc.Executable:='/usr/bin/dosbox';
+        proc.CurrentDirectory:='/btrfs/RISC-OS/'+path;
+        proc.Parameters.Add('-conf');
+        proc.Parameters.Add('dosbox.cnf');
+        proc.Active:=True;
+        FBoxes[FRow-1]:=proc;
+        ShowMessage('Started Archie System: '+path);
+      end
+      else
+      begin
+        ShowMessage('Unable to start RISC-OS for: '+path);
+        BoxRunning.State:=cbUnchecked;
+      end;
+    end
     else
     begin
       if not DirectoryExists('/btrfs/Boxes/'+path) then
@@ -281,6 +321,9 @@ begin
       proc.CurrentDirectory:='/btrfs/Boxes/'+path;
       if GoFS.Checked then
         proc.Parameters.Add('-F');
+      {$IFDEF NEW86BOX}
+      proc.Parameters.Add('86box.cfg');
+      {$ENDIF}
       proc.Active:=True;
       FBoxes[FRow-1]:=proc;
       ShowMessage('Box '+path+' has been started.');
@@ -343,6 +386,8 @@ begin
     path:=RightStr(path, Length(path)-1);
     Exec('/usr/bin/virt-manager','-c lxc+ssh://kveroneau@pi4/ --no-fork --show-domain-editor '+path);
   end
+  else if path[1] = '$' then
+    ShowMessage('Configure not possible for RISC-OS System.')
   else
   begin
     proc:=TProcess.Create(Nil);
@@ -350,6 +395,9 @@ begin
       proc.Executable:='/usr/bin/86Box';
       proc.CurrentDirectory:='/btrfs/Boxes/'+path;
       proc.Parameters.Add('-S');
+      {$IFDEF NEW86BOX}
+      proc.Parameters.Add('86box.cfg');
+      {$ENDIF}
       proc.Execute;
       proc.WaitOnExit;
     finally
@@ -369,12 +417,18 @@ begin
     Exit;
   end;
   path:=SysGrid.Cells[3, FRow];
-  if path[1] = '!' then
+  if (path[1] = '!') or (path[1] = '=') then
   begin
     ShowMessage('Currently unsupported with KVM Boxes.');
     Exit;
   end;
-  ExecPath:='/btrfs/Boxes';
+  if path[1] = '$' then
+  begin
+    ExecPath:='/btrfs/RISC-OS';
+    path:=RightStr(path, Length(path)-1);
+  end
+  else
+    ExecPath:='/btrfs/Boxes';
   newname:=InputBox('System Manager', 'Enter in a new name:', path+'a');
   if Exec('/usr/bin/btrfs', 'subvolume snapshot '+path+' '+newname) <> 0 then
   begin
@@ -410,16 +464,21 @@ begin
     {$ENDIF}
   end;
   NetProcModule.OnSignal:=@UpdateNetworks;
-  ShowMessage('System Manager v0.6b started.');
+  ShowMessage('System Manager v0.7b started.');
 end;
 
 procedure TSysMgrForm.JournalIconDblClick(Sender: TObject);
 var
   frm: TJournalForm;
+  path: string;
 begin
   frm:=TJournalForm.Create(Self);
   frm.Caption:=SysGrid.Cells[0, FRow];
-  frm.OpenJournal('/btrfs/Boxes/'+SysGrid.Cells[3, FRow]+'/journal.txt');
+  path:=SysGrid.Cells[3, FRow];
+  if path[1] = '$' then
+    frm.OpenJournal('/btrfs/RISC-OS/'+RightStr(path, Length(path)-1)+'/journal.txt')
+  else
+    frm.OpenJournal('/btrfs/Boxes/'+path+'/journal.txt');
 end;
 
 procedure TSysMgrForm.LibraryBtnClick(Sender: TObject);
@@ -478,6 +537,25 @@ begin
   OpenList.Enabled:=False;
   if fname = 'corpnet.sl' then
     CorpTap.Enabled:=True;
+end;
+
+procedure TSysMgrForm.ProcTimerTimer(Sender: TObject);
+var
+  i: Integer;
+begin
+  FUpdating:=True;
+  for i:=0 to High(FBoxes)-1 do
+    if Assigned(FBoxes[i]) then
+    begin
+      if not FBoxes[i].Active then
+      begin
+        FreeAndNil(FBoxes[i]);
+        if i = FRow-1 then
+          BoxRunning.State:=cbUnchecked;
+        ShowMessage('Box '+SysGrid.Cells[3, i+1]+' has stopped.');
+      end;
+    end;
+  FUpdating:=False;
 end;
 
 procedure TSysMgrForm.RemoteSwitchClick(Sender: TObject);
@@ -590,6 +668,21 @@ begin
     SetNetBtn.Enabled:=False;
     AddJournalBtn.Enabled:=False;
     LibraryBtn.Enabled:=False;
+    FUpdating:=False;
+    Exit;
+  end;
+  if path[1] = '$' then
+  begin
+    CfgButton.Enabled:=False;
+    SetNetBtn.Enabled:=False;
+    LibraryBtn.Enabled:=False;
+    if FileExists('/btrfs/RISC-OS/'+RightStr(path, Length(path)-1)+'/journal.txt') then
+    begin
+      AddJournalBtn.Enabled:=False;
+      JournalIcon.Visible:=True;
+    end
+    else
+      AddJournalBtn.Enabled:=True;
     FUpdating:=False;
     Exit;
   end;

@@ -402,4 +402,9 @@ object SysMgrForm: TSysMgrForm
     Style = csDropDownList
     TabOrder = 6
   end
+  object ProcTimer: TTimer
+    OnTimer = ProcTimerTimer
+    Left = 264
+    Top = 424
+  end
 end

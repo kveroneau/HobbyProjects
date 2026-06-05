@@ -88,6 +88,13 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dNEW86BOX"/>
+            <OtherDefines Count="2">
+              <Define0 Value="DEBUG"/>
+              <Define1 Value="NEW86BOX"/>
+            </OtherDefines>
+          </Other>
         </CompilerOptions>
       </Item>
     </BuildModes>
