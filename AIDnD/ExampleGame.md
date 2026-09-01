@@ -9,13 +9,17 @@ Before we dive in, let’s get some basics out of the way.
 
 
 Take your time to answer these questions, and then we'll begin!  Let me know when you're ready – and don’t be afraid to ask if anything is unclear. Let the adventure begin!
-I am Kalfig, an Elf Wizard.
+
+`I am Kalfig, an Elf Wizard.`
+
 Alright, Kalfig, an Elf Wizard! Excellent choice. I like the sound of that. You have a lean build, typical for an elf, with long, silver hair often tied back with a simple leather thong. Your eyes are a startling shade of turquoise, and you carry yourself with a quiet confidence – a hint of scholarly detachment mixed with a subtle awareness of your magical abilities.
 
 You’re currently sitting at the bar, nursing that ale as I described, observing the clientele of The Crooked Tankard. The rain outside continues to fall steadily.
 
 What do you want to do, Kalfig? Do you simply continue to observe, perhaps try to strike up a conversation with someone, or maybe investigate something that catches your eye in this dimly lit tavern?
-Ask one of the local drunks if there is any adventure to be had around these parts.
+
+`Ask one of the local drunks if there is any adventure to be had around these parts.`
+
 You approach a large, red-faced man slumped over the bar, nursing a tankard twice the size of yours and occasionally letting out a booming laugh that seems to vibrate through the entire tavern. He’s wearing a stained leather jerkin and has a wild look in his eyes – clearly enjoying himself *a little* too much.
 
 You clear your throat and address him: “Excuse me, sir? I couldn't help but notice you seem… comfortable.”
@@ -31,7 +35,9 @@ What do you do? Do you:
 1.  **Press Borin for more details about the lights and ruins.** (Roll a DC 12 Charisma check to get him talking.)
 2.  **Simply thank him for his time and move on.** (Continue observing the tavern)
 3.  **Try to buy him another drink, hoping to loosen him up further?** (Roll a DC 10 Persuasion check)
-I'd like to try and buy him another drink to loosen him up further.
+
+`I'd like to try and buy him another drink to loosen him up further.`
+
 You slide a silver piece across the bar towards Borin. The ale glints in the dim light as he accepts it with a grunt, taking a generous swig before setting the tankard down with a thud.
 
 “That’s… that’s a good lad,” he slurs, wiping his mouth with the back of his hand. “A *very* good lad.  You want another one? This place makes ‘em strong.” He gestures vaguely towards the bartender, a weary-looking woman named Elara who doesn't seem particularly surprised by anything at this point.
@@ -49,7 +55,9 @@ Now that you've bought him another drink and gotten a little bit of information,
 1.  **Press Borin further about the lights and ruins – now armed with a slightly more detailed description.** (DC 14 Charisma check)
 2.  **Thank him for his honesty and quietly leave The Crooked Tankard.** (Move on to exploring the village)
 3.  **Try to subtly observe Elara, the bartender, and see if she seems to know anything about what’s happening in Oakhaven?**
-Move on to exploring the village.
+
+`Move on to exploring the village.`
+
 You thank Borin for his… insights – a mumbled “Don't go poking around” being the extent of his gratitude – and quietly slip out of The Crooked Tankard, stepping back into the rain-slicked streets of Oakhaven.
 
 The village itself is small and unassuming. Most buildings are constructed from timber and stone, with thatched roofs struggling to withstand the persistent weather. A few villagers are going about their business: a farmer hauling hay bales, a young woman carrying a basket of vegetables, and an elderly man sweeping his porch. The air smells strongly of wet earth and woodsmoke.
@@ -66,7 +74,9 @@ What do you want to investigate first? Do you:
 2.  **Examine the Old Mill.** (Abandoned and potentially hiding something)
 3.  **Go to the Town Hall and try to find out what's being discussed.** (Could be a key piece of information)
 4.  **Simply wander through the village, observing the villagers and looking for clues?**
-I'd like to go to the town hall to find out what is being discussed.
+
+`I'd like to go to the town hall to find out what is being discussed.`
+
 You make your way towards the Town Hall, a simple stone building with a weathered wooden sign proclaiming its purpose. As you approach, you notice a small group of villagers gathered outside, huddled together in conversation. The atmosphere seems tense – several are glancing nervously at the forest and whispering amongst themselves.
 
 You push open the heavy wooden door and step inside. The hall is surprisingly spacious, though sparsely furnished with a long table and a few chairs. Mayor Silas Thorne, a stout man with a perpetually worried expression, stands before a small group of villagers, his voice raised in urgency.
@@ -86,7 +96,9 @@ What do you do? Do you:
 1.  **Offer your assistance to the Mayor and volunteer to investigate.** (Roll a DC 13 Persuasion check)
 2.  **Politely decline, stating that you’re not equipped to handle such a situation.** (Move on without offering help)
 3.  **Ask the Mayor specific questions about the symbols and the lights – trying to gather more information before committing to anything?** (DC 10 Intelligence check)
-I'd like to ask the mayor more specific questions about the symbols and lights.
+
+`I'd like to ask the mayor more specific questions about the symbols and lights.`
+
 You approach Mayor Thorne, your turquoise eyes meeting his worried gaze. “Mayor,” you say, your voice calm and measured, “I’m willing to assist in any way I can. However, before committing to anything, I'd like to understand the situation more fully. Could you tell me more about these symbols? And regarding the lights… what do they look like?”
 
 The Mayor shifts nervously, adjusting his spectacles. "Right, of course. The symbols... they’re carved into the trees near Blackwood Forest. Mostly circles with lines radiating outwards, sometimes with a central dot. They appear to be ancient, almost ritualistic in nature. As for the lights… well, that's what’s truly unsettling. They flicker intermittently – sometimes bright and white, other times dim and green. It’s like... an unnatural glow. Thomas mentioned seeing them near the forest edge."
@@ -106,7 +118,9 @@ What do you do now? Do you:
 1.  **Examine the sketches of the symbols more closely – perhaps noticing a detail you missed?** (DC 12 Intelligence check)
 2.  **Ask the guard about his observations regarding the lights and symbols.** (DC 10 Persuasion check to speak with him privately)
 3.  **Suggest that you investigate Blackwood Forest yourself, seeking out the source of these strange occurrences?** (Roll a DC 15 Charisma Check - this shows initiative.)
-I'd like to examine the sketches more closely.
+
+`I'd like to examine the sketches more closely.`
+
 You carefully approach the table where the young guard, whose name is Gareth, has placed the sketches of the symbols. He watches you with a mixture of curiosity and apprehension as you lean closer to the drawings. The paper feels slightly damp beneath your fingertips – perhaps from the rain seeping in.
 
 As you study the symbols, you notice several details that hadn’t immediately struck you before.
@@ -126,7 +140,9 @@ What do you do? Do you:
 1.  **Attempt to replicate one of the symbols yourself, hoping to understand its significance better.** (DC 14 Intelligence check - requires concentration)
 2.  **Ask Gareth about his experiences with the symbols – specifically, if he’s ever witnessed them shifting in the moonlight.** (DC 12 Persuasion Check)
 3.  **Suggest that you and the Mayor investigate Blackwood Forest together, seeking answers to these unsettling mysteries?** (Roll a DC 16 Charisma check - this shows initiative.)
-I'd like to suggest to the mayor that we investigate the blackwood forest together.
+
+`I'd like to suggest to the mayor that we investigate the blackwood forest together.`
+
 You turn to Mayor Thorne, your expression serious as you propose, “Mayor, I believe it’s crucial that we investigate Blackwood Forest directly. These symbols, the disappearing livestock… they all point towards something within the forest itself. I'd like to offer my assistance – and yours – in uncovering the truth.”
 
 You pause, letting your words sink in. The Mayor shifts uneasily again, his worry palpable. He runs a hand through his hair, then looks out at the rain-streaked windows of the Town Hall.
@@ -142,7 +158,9 @@ Do you:
 1.  **Accept Mayor Thorne’s offer immediately and prepare to head into Blackwood Forest with the group?** (This commits you to the investigation)
 2.  **Request more information about the risks involved – specifically, what dangers might lie within the forest?** (Roll a DC 13 Persuasion check - to glean details)
 3.  **Politely decline the offer, stating that you need time to assess the situation before committing yourself to such a dangerous undertaking?**
-I'd like to accept the mayor's offer and prepare to head into the forest with the group.
+
+`I'd like to accept the mayor's offer and prepare to head into the forest with the group.`
+
 You nod decisively, a hint of determination hardening your features. “Very well, Mayor,” you say, your voice firm. “I accept your offer. I’ll accompany you and the guards into Blackwood Forest.”
 
 The Mayor visibly relaxes slightly, offering a relieved smile. "Thank you, Kalfig. That's… that's a relief. Gareth will prepare a small pack for us – rations, torches, and a basic map of the surrounding area. He says there are rumors of a crumbling shrine deep within the forest, but those are just stories."
@@ -164,7 +182,9 @@ What do you do? Do you:
 1.  **Proceed cautiously along the path, keeping a watchful eye for any signs of danger?** (Roll initiative - stealth check DC 13)
 2.  **Cast a spell to illuminate your surroundings and ward off potential threats?** (If you have spells prepared – let me know which one!)
 3.  **Attempt to communicate with the forest itself, seeking guidance or warnings?** (DC 16 Wisdom Check - this is a risky move)
-I'd like to prepare then cast an illumination spell.
+
+`I'd like to prepare then cast an illumination spell.`
+
 You take a deep breath, steeling yourself for what lies ahead in Blackwood Forest. You’ve spent years honing your magical abilities, and you know that preparation – both mental and arcane – is key to survival.
 
 You quickly check your spell slots, confirming you have one prepared: *Illumination*. It's a simple but effective spell, creating a sphere of bright light around you, revealing details obscured by darkness.
@@ -190,7 +210,9 @@ What do you do? Do you:
 1.  **Cautiously push through the thorny bushes, prepared for whatever might be lurking inside?** (Roll initiative - stealth check DC 15)
 2.  **Attempt to use your magic to dispel any illusions or concealments within the thicket?** (DC 16 Intelligence Check – requires concentration)
 3.  **Order the guards to set up a defensive perimeter before proceeding further, preparing for a potential confrontation?**
-I'd like to use my magic to dispel any illusions or concealments within the thicket.
+
+`I'd like to use my magic to dispel any illusions or concealments within the thicket.`
+
 You focus your will, channeling your magical energy. “*Dissipatio*,” you murmur, weaving the spell with precision and intent. A wave of shimmering blue light washes over the thorny bushes, momentarily disrupting the forest’s natural camouflage.
 
 The thicket doesn't immediately reveal its secrets, but as the illusionary veil fades, a startling sight emerges. It isn’t an animal or a monster – it’s a meticulously constructed shrine, built from moss-covered stone and interwoven branches. The symbols you’ve seen carved into the trees are replicated on the shrine itself, glowing faintly with an unnatural luminescence.
@@ -212,7 +234,9 @@ What do you do? Do you:
 1.  **Attempt to interrupt the chant with a counter-spell or magical attack?** (DC 17 Intelligence Check - requires concentration)
 2.  **Order the guards to engage, preparing for immediate combat?** (Roll initiative – this will be a difficult fight.)
 3.  **Try to communicate with the man within the shrine, attempting to understand his intentions and negotiate a peaceful solution?** (DC 15 Charisma Check - risky, as he seems hostile)
-Try to communicate with the man within the shrine.
+
+`Try to communicate with the man within the shrine.`
+
 You take a deep breath, trying to center yourself amidst the rising tension and unsettling energy emanating from the shrine. You focus your will, attempting to establish contact with the mysterious figure within – a risky move given his apparent hostility.
 
 “Greetings,” you say, projecting your voice calmly and deliberately, hoping to cut through the chanting and the oppressive atmosphere. “I am Kalfig, a wizard of Oakhaven. I come in peace. I wish to understand why you’ve chosen to guard this shrine.”
@@ -238,7 +262,9 @@ What do you do? Do you:
 1.  **Attempt to break the spell with a counter-spell of your own?** (DC 18 Intelligence Check - requires concentration and potentially a specific spell)
 2.  **Order the guards to attack, initiating combat with the shrine’s guardian?** (Roll initiative – this will be a challenging fight.)
 3.  **Try to reason with him further, offering assistance in restoring the balance of the Veil?** (DC 16 Charisma Check - a desperate attempt at diplomacy)
-Offer assistance in restoring the balance of the Veil.
+
+`Offer assistance in restoring the balance of the Veil.`
+
 You raise your hands once more, attempting to project an aura of sincerity and willingness to help. “I understand now,” you say, your voice strained but resolute. “The villagers’ fear is indeed feeding the darkness. I am willing to assist in restoring the balance – whatever it takes.”
 
 “Tell me,” you continue, “what must be done? What can I do to aid you in maintaining the Veil?”
