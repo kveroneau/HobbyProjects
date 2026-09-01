@@ -1,0 +1,12 @@
+# Kevin's Totally Unlicensed FOSS AI Dungeons & Dragons
+
+While you don't technically need this specific program to play a game of Dungeons & Dragons with an LLM, I wanted to experiment with the *OpenAI API* and my local models.  The *System Prompt* used here can be used in any LLM chat client which supports *System Prompts*.  Currently this client lacks **A LOT** of features, it's bare bones minimum.  However, with that said, I am planning on adding several features in future versions, so here's a list:
+
+  * Ability to Save a Game in progress, and then to restore it.
+  * Ability to have the system create a summary of gameplay, which the player can read themselves, and will be used to compress the context to allow for much longer duration games to be played with local models.
+  * Better configuration of OpenAI API Endpoint, current version will point to localhost, but not everyone runs a local model.
+  * Perhaps some additional Dungeons & Dragons specific components in the UI, which are driven by various AI prompts.  It could for example be used to generate an auto-map based on a summary of the various compass direction moments the player took.
+  * Support for AI party members to join you on an adventure, and to integrate with the same compaign as the player, so each AI party member will be-able to actually make choices and desisions based on their own character abilities in that moment.
+    - I think this one could really make things interesting, as AI bots are never given the ability to initiate something, and in this case, this will allow the AI to role-play as a D&D character and essentially be-able to make desisions which will alter the course of the story and game.  So, it would be interesting to see what sort of things an AI party member would do, and how they would support the player.
+
+Of course *Wizards of the Coast* owns the Trademark for *Dungeons and Dragons*, and this projecr is not in any way associated with *Wizards of the Coast*.  However, if there is interest from *Wizards of the Coast* to further develop this into a fully licensed property, as only this source code in this repository is concidered FOSS, not this idea itself.  Thus, I could work to produce a fully polished product licensed by *Wizards of the Coast* if there is such interest.  In this application's current state, it's purely for entertainment and research purposes, and is not a fully polished consumer product.

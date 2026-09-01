@@ -1,0 +1,61 @@
+object DNDChatForm: TDNDChatForm
+  Left = 322
+  Height = 480
+  Top = 219
+  Width = 640
+  Caption = 'Dungeons & Dragons AI Edition'
+  ClientHeight = 480
+  ClientWidth = 640
+  LCLVersion = '4.6.0.0'
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  object Label1: TLabel
+    Left = 8
+    Height = 24
+    Top = 8
+    Width = 634
+    Caption = 'Kevin''s Totally Unlicensed FOSS AI Dungeons && Dragons'
+    Font.Height = 20
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 440
+    Top = 40
+    Width = 630
+    Lines.Strings = (
+      'Memo1'
+    )
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+    OnKeyPress = Memo1KeyPress
+  end
+  object Timer1: TTimer
+    Interval = 250
+    OnTimer = Timer1Timer
+    Left = 546
+    Top = 80
+  end
+  object Speech: TProcess
+    Active = False
+    Executable = '/usr/bin/espeak'
+    Parameters.Strings = (
+      '-f'
+      '/tmp/speak.txt'
+    )
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    Left = 536
+    Top = 152
+  end
+end
